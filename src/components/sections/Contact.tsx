@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const socialLinks = [
     {
@@ -45,22 +46,79 @@ const socialLinks = [
 export default function Contact() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: '-100px' });
-    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const formRef = useRef<HTMLFormElement>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setIsSubmitting(false);
-        setFormData({ name: '', email: '', message: '' });
-        alert('Message sent! (Demo - connect to actual backend)');
+        setStatus({ type: null, message: '' });
+
+        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+        const autoReplyTemplateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_AUTO_REPLY_ID;
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            setStatus({ type: 'error', message: 'Email service is not configured correctly.' });
+            setIsSubmitting(false);
+            return;
+        }
+
+        try {
+            // Send Admin Notification
+            await emailjs.sendForm(
+                serviceId,
+                templateId,
+                formRef.current!,
+                publicKey
+            );
+
+            // Send User Auto-Reply (only if configured)
+            if (autoReplyTemplateId) {
+                // We need to pass the form data explicitly if using sendForm doesn't work well for the second call 
+                // or just reuse sendForm if the input names match the template variables.
+                // However, sendForm reads from the DOM. 
+                // A safer bet for the second email (auto-reply) is often 'send' with an object, 
+                // but sendForm is fine if the template variables (user_name, user_email) match the input names.
+                await emailjs.sendForm(
+                    serviceId,
+                    autoReplyTemplateId,
+                    formRef.current!,
+                    publicKey
+                );
+            }
+
+            setStatus({ type: 'success', message: 'Message sent successfully!' });
+            formRef.current?.reset();
+
+            // Clear success message after 3 seconds
+            setTimeout(() => {
+                setStatus({ type: null, message: '' });
+            }, 3000);
+
+        } catch (error: any) {
+            console.error('EmailJS Error:', error);
+            setStatus({ type: 'error', message: 'Failed to send message. Please try again later.' });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <section id="contact" className="relative py-20 lg:py-32">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                {status.message && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`mb-8 p-4 rounded-lg text-center ${status.type === 'success' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'
+                            }`}
+                    >
+                        {status.message}
+                    </motion.div>
+                )}
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, y: 30 }}
@@ -83,7 +141,7 @@ export default function Contact() {
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 md:p-8">
+                        <form ref={formRef} onSubmit={handleSubmit} className="glass rounded-2xl p-6 md:p-8">
                             <div className="space-y-6">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -92,11 +150,10 @@ export default function Contact() {
                                     <input
                                         type="text"
                                         id="name"
-                                        value={formData.name}
-                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         required
                                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
                                         placeholder="Your name"
+                                        name="user_name"
                                     />
                                 </div>
 
@@ -107,11 +164,10 @@ export default function Contact() {
                                     <input
                                         type="email"
                                         id="email"
-                                        value={formData.email}
-                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                         required
                                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
                                         placeholder="your@email.com"
+                                        name="user_email"
                                     />
                                 </div>
 
@@ -121,12 +177,11 @@ export default function Contact() {
                                     </label>
                                     <textarea
                                         id="message"
-                                        value={formData.message}
-                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         required
                                         rows={5}
                                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors resize-none"
                                         placeholder="Your message..."
+                                        name="message"
                                     />
                                 </div>
 
