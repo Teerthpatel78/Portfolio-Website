@@ -186,9 +186,7 @@ export default function Contact() {
                             <p className="text-gray-400 text-sm">
                                 📍 Gujarat, India
                             </p>
-                            <p className="text-gray-400 text-sm mt-2">
-                                📱 +91 98792 74444
-                            </p>
+
                         </div>
                     </motion.div>
                 </div>
