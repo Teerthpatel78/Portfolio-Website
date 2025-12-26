@@ -77,13 +77,6 @@ Portfolio-Website/
 - **Experience** - Professional experience & internships
 - **Contact** - Contact form and social links
 
-## 📬 Contact
-
-- **Email**: teerthpatel74@gmail.com
-- **LinkedIn**: [Teerth Patel](https://www.linkedin.com/in/teerth-patel-a2658b25b/)
-- **GitHub**: [Teerthpatel78](https://github.com/Teerthpatel78)
-- **Phone**: +91 9879274444
-
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
