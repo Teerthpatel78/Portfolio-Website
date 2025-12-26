@@ -1,41 +1,93 @@
-<<<<<<< HEAD
-# Portfolio-Website
-Flutter developer building cross-platform mobile apps with Dart, API integrations, Firebase/Supabase, and clean UI-focused implementations.
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Teerth Patel | Portfolio Website
 
-## Getting Started
+A modern, high-performance developer portfolio website built with Next.js, Tailwind CSS, and Framer Motion. Features a sleek dark theme, smooth animations, 3D elements, and a fully responsive design.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38B2AC?logo=tailwind-css)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animation-purple)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Modern Dark Theme** - Sleek, professional design with gradient accents
+- **3D Elements** - Interactive floating shapes using Three.js
+- **Smooth Animations** - Powered by Framer Motion
+- **Fully Responsive** - Mobile-first design that looks great on all devices
+- **Optimized Performance** - Fast loading with Next.js optimizations
+- **SEO Friendly** - Proper meta tags and semantic HTML
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: [Next.js 15](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **3D Graphics**: [Three.js](https://threejs.org/) / React Three Fiber
 
-## Learn More
+## 🚀 Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 18+ 
+- npm or yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Teerthpatel78/Portfolio-Website.git
+   cd Portfolio-Website
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> 4aa2836 (Initial commit from Create Next App)
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📁 Project Structure
+
+\`\`\`
+Portfolio-Website/
+├── src/
+│   ├── app/              # Next.js app router
+│   │   ├── layout.tsx    # Root layout
+│   │   ├── page.tsx      # Home page
+│   │   └── globals.css   # Global styles
+│   └── components/
+│       ├── 3d/           # Three.js components
+│       ├── sections/     # Page sections (Hero, About, etc.)
+│       └── ui/           # UI components (Navbar, Footer)
+├── public/               # Static assets
+└── package.json
+\`\`\`
+
+## 📄 Sections
+
+- **Hero** - Animated introduction with 3D background
+- **About** - Personal information and introduction
+- **Tech Stack** - Skills and technologies
+- **Projects** - Portfolio showcase
+- **Experience** - Professional experience & internships
+- **Contact** - Contact form and social links
+
+## 📬 Contact
+
+- **Email**: teerthpatel74@gmail.com
+- **LinkedIn**: [Teerth Patel](https://www.linkedin.com/in/teerth-patel-a2658b25b/)
+- **GitHub**: [Teerthpatel78](https://github.com/Teerthpatel78)
+- **Phone**: +91 9879274444
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+⭐ If you like this portfolio, give it a star!
