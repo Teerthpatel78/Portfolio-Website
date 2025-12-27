@@ -42,25 +42,26 @@ export default function Hero() {
                         Welcome to my portfolio
                     </motion.p>
 
+
+
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
+                        transition={{ delay: 0.4 }}
                         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
-                    >
-                        Hi, I&apos;m{' '}
-                        <span className="gradient-text">Teerth Patel</span>
-                    </motion.h1>
 
+                    >
+                        Flutter & Mobile Application Developer
+                    </motion.h1>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4 }}
+                        transition={{ delay: 0.3 }}
                         className="text-xl sm:text-2xl md:text-3xl text-gray-300 font-medium mb-6"
                     >
-                        Flutter & Mobile Application Developer
+                        Hi, I&apos;m{' '}
+                        <span className="gradient-text">Teerth Patel</span>
                     </motion.h2>
-
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}

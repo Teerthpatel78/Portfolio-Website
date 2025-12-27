@@ -18,7 +18,7 @@ const socialLinks = [
     },
     {
         name: 'Instagram',
-        href: 'https://www.instagram.com/teerth_patel74?igsh=MWg5c215bnZkdnI2ZQ%3D%3D&utm_source=qr',
+        href: 'https://www.instagram.com/teerth.patel',
     },
 ];
 
