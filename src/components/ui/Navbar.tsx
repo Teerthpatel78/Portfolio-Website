@@ -25,11 +25,16 @@ export default function Navbar() {
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
         setIsOpen(false);
+
+        // Add a small delay to ensure the mobile menu starts closing before scrolling
+        // and to handle potential interference with scrollIntoView on mobile devices
+        setTimeout(() => {
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100);
     };
 
     return (
