@@ -90,7 +90,7 @@ export default function Hero() {
                         </motion.a>
 
                         <motion.a
-                            href="/Teerth_Patel_CV.pdf"
+                            href="Teerth_Patel_CV.pdf"
                             download="Teerth_Patel_CV.pdf"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
